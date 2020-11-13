@@ -9,11 +9,12 @@ function removeDuplicates(obj) {
     console.log(val)
     for(let i = 0; i < val.length - 1; i++) {
       let array1 = val[i];
-      let array2 = val[i+1];
-      array1 = array1.filter(function(item) {
-      return !array2.includes(item);
-      });
-      
+      for(let j = i+1; j < val.length; j++) {
+        let array2 = val[j];
+        array1 = array1.filter(function(item) {
+        return !array2.includes(item);
+       });
+      }
       let keyItem = Object.keys(newObj);
       newObj[keyItem[i]] = array1;  
     }
@@ -21,9 +22,10 @@ function removeDuplicates(obj) {
   }
   
   console.log(removeDuplicates({
-    "1": ["A", "B", "C"],
-    "2": ["A", "B", "D", "A"],
-    "3": ["F", "B", "C", "C", "G"]
+   "432": ["A", "A", "B", "D"],
+    "53": ["L", "G", "B", "C"],
+    "236": ["L", "A", "X", "G", "H", "X"],
+    "11": ["P", "R", "S", "D"]
   }));
 
 module.exports = removeDuplicates;
