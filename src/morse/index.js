@@ -64,6 +64,7 @@ function morse(text) {
   let final = [];
   for(let i = 0; i < arr.length; i++) {
     char = arr[i];
+    if(arr[0] === " " || arr[arr.length - 1] === " " || arr[i] === "   ") continue;
     final.push(MORSE_CODE[char]);
   }
   return final.join('');
