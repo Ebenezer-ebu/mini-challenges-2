@@ -59,17 +59,12 @@ const MORSE_CODE = {
 Object.freeze(MORSE_CODE);
 
 function morse(text) {
-  let arr = text.split(" ");
-  let char;
+  let space = text.split('   ');
+  console.log(space);
   let final = [];
-  for(let i = 0; i < arr.length; i++) {
-    char = arr[i];
-    if(arr[0] === " " || arr[arr.length - 1] === " " || arr[i] === "   ") continue;
-    final.push(MORSE_CODE[char]);
-  }
-  return final.join('');
+  space.map(word => final.push(word.split(' ').map( letter  => MORSE_CODE[letter]).join('')));
+ return final.join(' ').trim()
 }
-
-console.log(morse("-.. . -.-. .- -.. . ...-"))
+console.log(morse("-.. . -.-. .- -.. . ...-"));
 
 module.exports = morse;
