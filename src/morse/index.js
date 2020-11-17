@@ -60,11 +60,9 @@ Object.freeze(MORSE_CODE);
 
 function morse(text) {
   let space = text.split('   ');
-  console.log(space);
   let final = [];
   space.map(word => final.push(word.split(' ').map( letter  => MORSE_CODE[letter]).join('')));
  return final.join(' ').trim()
 }
-console.log(morse("-.. . -.-. .- -.. . ...-"));
 
 module.exports = morse;
