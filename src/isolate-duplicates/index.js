@@ -1,26 +1,32 @@
-function isolateDuplicates(text) {
-  let letters = text.split("");
-  let dupilcates = "";
-  let obj = {};
-  let count = 0;
-  letters.forEach(function(letter) {
-    obj[letter] ? obj[letter]++ : obj[letter] = 1;
-  })
-  for(let char in obj) {
-    let strCnt = obj[char];
-    if(strCnt > 2) {
-      dupilcates += char.repeat(2);
-      strCnt -= 2;
-      count++;
-    } else {
-      dupilcates += char.repeat(strCnt);
-      strCnt -= strCnt
-    }
-    if(strCnt > 0) {
-      dupilcates += "["+ char.repeat(strCnt) +"]"; 
-    }
-  }
-  return [dupilcates, count];
+const aaa = 'fffffgghfffggggiii'
+function isolateDuplicate(text) {
+   let isDuplicate = false;
+   let alphabetCount = 0;
+   let duplicateCount = 0;
+   let returnWord = `${text[0]}`;
+   for (let i = 1; i < text.length; i++) {
+
+      alphabetCount = (text[i] == text[i - 1]) ? alphabetCount + 1 : 0;
+      if (alphabetCount > 1) isDuplicate = true;
+      if (alphabetCount == 1) isDuplicate = false;
+      if (alphabetCount == 2) duplicateCount++;
+
+      if (alphabetCount == 2 && (i == text.length - 1)) {//An Edge Case
+         returnWord += `[${text[i]}]`
+         
+      } else if (alphabetCount == 2) {
+         returnWord += `[${text[i]}`
+         
+      } else if (alphabetCount == 0 && isDuplicate) {
+         returnWord += `]${text[i]}`
+      } else if ((i == text.length - 1) && isDuplicate) {//An Edge case
+         returnWord += `${text[i]}]`
+      } else {
+         returnWord += `${text[i]}`
+      }
+   }
+   return [returnWord, duplicateCount]
 }
+console.log(isolateDuplicate(aaa));
 
 module.exports = isolateDuplicates;

@@ -59,10 +59,15 @@ const MORSE_CODE = {
 Object.freeze(MORSE_CODE);
 
 function morse(text) {
+  
+  if(typeof text !== 'string'){
+     throw "Please provide a morse string"; 
+  } else {
   let space = text.split('   ');
   let final = [];
   space.map(word => final.push(word.split(' ').map( letter  => MORSE_CODE[letter]).join('')));
  return final.join(' ').trim()
+  }
 }
 
 module.exports = morse;
